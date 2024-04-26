@@ -28,7 +28,7 @@ namespace Jitbit.Utils
 		private static SemaphoreSlim _globalStaticLock = new(1);
 		private async Task EvictExpiredJob()
 		{
-			//if an applicaiton has many-many instances of FastCache objects, make sure the timer-based
+			//if an application has many-many instances of FastCache objects, make sure the timer-based
 			//cleanup jobs don't clash with each other, i.e. there are no clean-up jobs running in parallel
 			//so we don't waste CPU resources, because cleanup is a busy-loop that iterates a collection and does calculations
 			//so we use a lock to "throttle" the job and make it serial
@@ -236,7 +236,7 @@ namespace Jitbit.Utils
 			return this.GetEnumerator();
 		}
 
-		private class TtlValue
+		private readonly struct TtlValue
 		{
 			public readonly TValue Value;
 			public readonly long TickCountWhenToKill;
